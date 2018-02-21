@@ -58,3 +58,5 @@ typings/
 .env
 
 db.sqlite
+config/api.json
+config/db.json

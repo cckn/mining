@@ -1,10 +1,17 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('mining', 'root', '1234', {
-    dialect: 'mysql',
-    host: '127.0.0.1',
-    port: 3306,
-    logging: false,
-});
+const dbConfig = require('./config/db.json');
+
+const sequelize = new Sequelize(
+    dbConfig.dbName,
+    dbConfig.id,
+    dbConfig.password,
+    {
+        dialect:dbConfig.dialect,
+        host: dbConfig.host,
+        port: dbConfig.port,
+        logging: dbConfig.logging,
+    }
+);
 
 const User = sequelize.define('User', {
     name: Sequelize.STRING, //varchar 255
