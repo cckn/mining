@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './db.sqlite',
+const sequelize = new Sequelize('mining', 'root', '1234', {
+    dialect: 'mysql',
+    host: '127.0.0.1',
+    port: 3306,
     logging: false,
 });
 
