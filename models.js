@@ -14,7 +14,10 @@ const sequelize = new Sequelize(
 );
 
 const User = sequelize.define('User', {
-    name: Sequelize.STRING, //varchar 255
+    name: {
+        type: Sequelize.STRING,
+        unique: true,
+    },
 });
 
 const Bans = sequelize.define('Bans', {
