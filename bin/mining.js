@@ -1,11 +1,11 @@
+const axios = require('axios');
+
 const app = require('../app');
 const syncDb = require('./sync-db.js');
 const models = require('../models.js');
 
 const dbConfig = require('../config/db.json');
 const apiConfig = require('../config/api.json');
-
-const axios = require('axios');
 
 const match = require('../src/match');
 
