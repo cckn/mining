@@ -1,7 +1,7 @@
 const request = require('supertest');
 const should = require('should');
 const app = require('../../app');
-const models = require('../../models.js');
+const models = require('../../src/models/models');
 
 const users = [{ name: 'elise' }, { name: 'james' }, { name: 'chris' }];
 

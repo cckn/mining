@@ -1,6 +1,6 @@
 //api 로직
 
-const models = require('../../models.js');
+const models = require('../../src/models/models');
 
 const index = function(req, res) {
     req.query.limit = req.query.limit || 10;

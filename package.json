@@ -6,6 +6,7 @@
     "dependencies": {
         "axios": "^0.18.0",
         "body-parser": "^1.18.2",
+        "chai": "^4.1.2",
         "express": "^4.16.2",
         "morgan": "^1.9.0",
         "mysql": "^2.15.0",
@@ -20,8 +21,8 @@
         "supertest": "^3.0.0"
     },
     "scripts": {
-        "test": "set NODE_ENV=test&&mocha api/user/user.spec.js -w",
-        "start": "nodemon bin/mining.js"
+        "test": "set NODE_ENV=test&&mocha test/models.spec.js -w",
+        "start": "nodemon src/main.js"
     },
     "author": "",
     "license": "ISC"
