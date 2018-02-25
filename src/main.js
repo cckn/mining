@@ -7,6 +7,7 @@ const config = {
     api: require('./config/api'),
 };
 const models = {
+    response: require('./models/response'),
     match: require('./models/match'),
 };
 
@@ -25,7 +26,9 @@ const getMatchId = () => {
 };
 
 const main = async () => {
-    console.log(new models.match.Match(await getResponse(getMatchId())));
+    console.log(new models.response.Response(await getResponse(getMatchId())));
+    // response = await getResponse(getMatchId())
+    // console.log(await getResponse(getMatchId()));
 };
 
 main();

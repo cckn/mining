@@ -1,7 +1,7 @@
 // const request = require('supertest');
 const should = require('should');
 const expect = require('chai').expect;
-// const app = require('../app');
+
 const main = require('../src/main.js');
 
 const models = {
@@ -19,27 +19,29 @@ var mochaAsync = fn => {
     };
 };
 
-describe.only('response 정보를 가져온다.', () => {
+describe('response 정보를 가져온다.', () => {
     let matchId;
-    let asyncValue;
+    let response;
+    const a = 1;
 
-    it('match Id를 return한다.', done => {
+    before(async () => {
         matchId = main.getMatchId();
+        response = new models.match.Match(await main.getResponse(matchId));
+    });
+
+    it('match Id는 숫자', done => {
         matchId.should.be.a.Number();
         done();
     });
 
-    before(() => {
-        main.getResponse().then(response => {
-            asyncValue = response;
-            done();
-        });
+    it('response는 객체일 것', () => {
+        expect(response).to.be.an('object');
+        // done();
     });
 
-    it.only('match Id를 이용해 match 정보를 가져온다.', async done => {
-        // const response = await main.getResponse();
-        //  expect(asyncValue).to.eqsual('something');
-        done();
+    it('response에 queueId라는 property가 있다', () => {
+        expect(response).to.have.property('queueId',420);
+        // done();
     });
 });
 
