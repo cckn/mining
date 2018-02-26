@@ -9,17 +9,17 @@ class Match {
         this.gameDuration = data.gameDuration;
         this.gameVersion = data.gameVersion;
 
-        this.bans = new Set();
-
+        // this.bans = new Set();
         this.lane = new Set();
+
         this.winTeam = [];
         this.loseTeam = [];
 
-        for (let team of data.teams) {
-            for (let ban of team.bans) {
-                this.bans.add(ban.championId);
-            }
-        }
+        // for (let team of data.teams) {
+        //     for (let ban of team.bans) {
+        //         this.bans.add(ban.championId);
+        //     }
+        // }
 
         for (let user of data.participants) {
             user.stats.win ? this.winTeam.push(user) : this.loseTeam.push(user);

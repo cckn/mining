@@ -5,7 +5,7 @@ const app = require('../app');
 
 const api_config = require('./config/api');
 
-const responseModel = require('./models/response');
+const responseModel = require('./models/responseModel');
 
 const getMatchId = () => {
     return 3040204762;
