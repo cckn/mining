@@ -27,7 +27,7 @@ describe('response 정보를 가져온다.', () => {
 
     before(async () => {
         matchId = main.getMatchId();
-        response = new models.response(await main.getResponse(matchId));
+        // response = new models.response(await main.getResponse(matchId));
     });
 
     it('match Id는 숫자', done => {

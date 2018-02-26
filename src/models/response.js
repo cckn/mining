@@ -2,15 +2,20 @@ const match = require('./match');
 
 class Response {
     constructor(response) {
-        this.status = response.status;
-        this.headers = response.headers;
-
+        const res = response
         
-        // console.log(`response.json:: ${response.data}`);
+        this.status = res.status
+        this.headers = res.headers
 
-        // this.createMatchObject(response.data);
+        this.match =  new match(res.data)
+        
+
+        this.show()
     }
+    show(){
+        console.log(this.match);
 
+    }
 }
 
 module.exports = Response;

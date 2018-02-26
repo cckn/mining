@@ -1,6 +1,6 @@
 class Match {
     constructor(matchJson) {
-        const data = matchJson.data;
+        const data = matchJson;
 
         this.queueId = data.queueId;
         this.gameId = data.gameId;
