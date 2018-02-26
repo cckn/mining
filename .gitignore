@@ -58,5 +58,5 @@ typings/
 .env
 
 db.sqlite
-config/api.json
-config/db.json
+src/config/api.json
+src/config/db.json

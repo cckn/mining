@@ -36,13 +36,18 @@ describe('response 정보를 가져온다.', () => {
 
     it('response는 객체일 것', () => {
         expect(response).to.be.an('object');
+        console.log(response);
+
+
         // done();
     });
 
-    it('response에 queueId라는 property가 있다', () => {
-        expect(response).to.have.property('queueId',420);
-        // done();
-    });
+    // describe(`${response.status}`, () => {
+    //     it('response에 queueId라는 property가 있다', () => {
+    //         expect(response).to.have.property('queueId', 420);
+    //         // done();
+    //     });
+    // });
 });
 
 // describe.only('match 정보를 성공적으로 parsing한다.', () => {
