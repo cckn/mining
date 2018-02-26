@@ -6,6 +6,7 @@ const main = require('../src/main.js');
 
 const models = {
     match: require('../src/models/match'),
+    response: require('../src/models/response'),
 };
 
 var mochaAsync = fn => {
@@ -26,7 +27,7 @@ describe('response 정보를 가져온다.', () => {
 
     before(async () => {
         matchId = main.getMatchId();
-        response = new models.match.Match(await main.getResponse(matchId));
+        response = new models.response(await main.getResponse(matchId));
     });
 
     it('match Id는 숫자', done => {
@@ -34,20 +35,23 @@ describe('response 정보를 가져온다.', () => {
         done();
     });
 
-    it('response는 객체일 것', () => {
+    it('response는 객체일 것', (done) => {
         expect(response).to.be.an('object');
         console.log(response);
 
-
-        // done();
+        done();
     });
 
-    // describe(`${response.status}`, () => {
-    //     it('response에 queueId라는 property가 있다', () => {
-    //         expect(response).to.have.property('queueId', 420);
-    //         // done();
-    //     });
-    // });
+    console.log(`response :: ${response}`);
+
+    describe(`${response}`, () => {
+        it('response에 queueId라는 property가 있다', () => {
+            console.log(`response :: ${response}`);
+
+            expect(response).to.have.property('status', 200);
+            // done();
+        });
+    });
 });
 
 // describe.only('match 정보를 성공적으로 parsing한다.', () => {

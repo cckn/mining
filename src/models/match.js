@@ -27,4 +27,4 @@ class Match {
     }
 }
 
-module.exports = { Match };
+module.exports = Match;
