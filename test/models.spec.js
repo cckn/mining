@@ -1,67 +1,78 @@
 // const request = require('supertest');
+
+'use strict';
+
+const axios = require('axios');
 const should = require('should');
 const expect = require('chai').expect;
 
 const main = require('../src/main.js');
+const apiConfig = require('../src/config/api.json');
+const responseModel = require('../src/models/responseModel');
 
-const models = {
-    match: require('../src/models/match'),
-    response: require('../src/models/response'),
+let response;
+
+const getResponse = async (gameId) => {
+    try {
+        const res = await axios.get(
+            `https://kr.api.riotgames.com/lol/match/v3/matches/${gameId}?api_key=${
+                apiConfig.key
+            }`
+        );
+        return new responseModel(res);
+    } catch (e) {
+        return e;
+    }
 };
 
-var mochaAsync = fn => {
-    return async done => {
-        try {
-            await fn();
-            done();
-        } catch (err) {
-            done(err);
-        }
-    };
-};
-
-describe('response 정보를 가져온다.', () => {
-    let matchId;
-    let response;
-    const a = 1;
-
+describe('정상적인 game parser', async () => {
     before(async () => {
-        matchId = main.getMatchId();
-        // response = new models.response(await main.getResponse(matchId));
+        await getResponse(3040204762);
     });
-
-    it('match Id는 숫자', done => {
-        matchId.should.be.a.Number();
+    it('data는 undefined가 아닐 것', (done) => {
+        // getResponse();
+        // console.log(data);
+        expect(data).to.be.not.undefined;
         done();
-    });
-
-    it('response는 객체일 것', (done) => {
-        expect(response).to.be.an('object');
-        console.log(response);
-
-        done();
-    });
-
-    console.log(`response :: ${response}`);
-
-    describe(`${response}`, () => {
-        it('response에 queueId라는 property가 있다', () => {
-            console.log(`response :: ${response}`);
-
-            expect(response).to.have.property('status', 200);
-            // done();
-        });
     });
 });
 
-// describe.only('match 정보를 성공적으로 parsing한다.', () => {
-//     describe('match 정보를 성공적으로 parsing한다.', () => {
-//         it('test', done => {
-//             let num = mining.test();
-//             num.should.be.a.Number();
-//             num.should.equal(5);
-//             //res.body.should.have.property('id', 1);
-//             done();
-//         });
-//     });
-// });
+describe.only('정상적인 game parser', async () => {
+    let response
+    const expected = {
+        status: 404,
+        gameId: 3040204766,
+        queueId: 430,
+    };
+
+    before(async () => {
+        response = await getResponse(3040204766);
+    });
+
+    it('data는 undefined가 아닐 것', (done) => {
+        expect(response).to.be.not.undefined;
+        done();
+    });
+
+    it(`game Id가 일치해야 함 :: ${expected.gameId}`, (done) => {
+        expect(response.match.gameId).to.deep.equal(expected.gameId);
+        done();
+    });
+
+    it(`expected queueId :: ${expected.queueId}`, (done) => {
+        expect(response.match.queueId).to.deep.equal(expected.queueId);
+        done();
+    });
+});
+
+describe.only('404 status', async () => {
+    let response
+
+    before(async () => {
+        response = await getResponse(3040204767);
+    });
+
+    it('response가 error 일 것 ', () => {
+        expect(response).to.be.an('error');
+    });
+});

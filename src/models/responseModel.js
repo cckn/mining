@@ -9,10 +9,10 @@ class Response {
 
         this.match = new matchModel(res.data);
 
-        this.show();
+        // this.show();
     }
     show() {
-        console.log(this.match);
+        console.log(this);
     }
 }
 
