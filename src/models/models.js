@@ -20,7 +20,21 @@ const User = sequelize.define('User', {
     },
 });
 
-
+const Games = sequelize.define('Games', {
+    gameId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+    },
+    status: {
+        type: Sequelize.INTEGER,
+    },
+    gameCreation: {
+        type: Sequelize.DATE,
+    },
+    gameDuration: {
+        type: Sequelize.DATE,
+    },
+});
 
 const Bans = sequelize.define('Bans', {
     champId: {
@@ -36,4 +50,4 @@ const Bans = sequelize.define('Bans', {
     },
 });
 
-module.exports = { Sequelize, sequelize, User, Bans };
+module.exports = { Sequelize, sequelize, User, Games };
